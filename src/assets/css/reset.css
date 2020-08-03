@@ -1,0 +1,29 @@
+html,
+body {
+	height: 100%;
+}
+
+html,
+body,
+p,hr {
+	margin: 0;
+	padding: 0;
+}
+li{
+	list-style: none;
+}
+a{
+	text-decoration: none;
+	color: #409EFF;
+}
+hr{
+	background-color: #DCDFE6;
+}
+
+.el-page-header__left:hover{
+	color: #407EE7;
+}
+/* a.top-nav-active {
+	color: #fff;
+}
+ */

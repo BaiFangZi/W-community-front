@@ -1,0 +1,29 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1596422319471'); /* IE9 */
+  src: url('iconfont.eot?t=1596422319471#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAPAAAsAAAAAB/wAAAN0AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDFAqDRIMFATYCJAMQCwoABCAFhG0HQxvqBhEVnAPJfhw4bsP6rtT2mBNVQhPpPwcP/P+p5yLYC2tMVjoQCAbyqwkQcLa5GW4ZFaFYkvPgf/mOdALh0vz6n8vp3TUF57ezXOaYfNQLMA4owL0w2sIFFBjvYeyClrgbAjCIJweiQqUaDbCiMQcJQHTr3LE11owR3VApsCIwV8zUiFmYsMrJ8howM3i8+Eg+YQWJSWGOrNOhYjvKvK3/dq8alT5KMw9BNJ0dYPNAATkADaJVpdODipI5UBhqZ00uwIxGIKfyp6cTYHuEmtq80ReeRIEwY5bbASgAUwre1ndwCHi7B4eEt3tVPCBJ97cCBjAe2IG0sdP4FDrSunmo3R5u0Xrg1Plh+0/HNrBNzbo5ssm8TaF2FQhELD3aThqq7ZR5oaFZdpU4VWJTqnSkidHhRuOFS8IX9G04f/my/L+yb9iyYmVE480ZGzgabfT4fA293gZ+f6NAoOE5b+JqX8WLgZQ1/qHrj0fJRcdS7Q3mbRDC2HAiWi09mbm7U9po7GiDIdpiFxW9puetY+xtsyxaEV+wScv62WqP+7ZxVvmYiVdqnk4uEzq/zPwlXkvv/MJ+21E+X4ceWTy14yHxe4lXOcbOycO4oiuP3Cj/4wV8SHzxo/yNVOzU/22XP9hj/nc87ZEDBwqPaDpwkMfnEZ1oCmsHDvSUeN6gvsvpyJ8HdKdrH/Lt2boqv7HVyL+q5uyWG9IctRqld2xYutHWBaVblmrl8pbZVSbryDLZytALcy+VJv0AqrD8CKC6yq2/8DkMmzd9fUtXid9WmwbgYc3FO7FR0z1lRQIT/TBRxzqtSUyT1orUEeouTYFULyRgYAA/qhogmCdTqMM6l4PASlgCEgtxoLCSimpKDjBhowCYsVIaDLJTeb6NEPqgEDoDkI3xAARudoLEyUlQuLmOaspjMBHOZzDjFgoMDI0KWdEmU7Erz6gELeg/REOnsy3ShZU39O9dcVoSMF7IJUZg6sd8ZsMTeYox5eNnEQeO6YAV7If7TnAxJTTSB5FrGQZXdaTe0FF1ymNIEcgC2h+IDHJyXnPRFe5/g7y3ncINhCr3C2JFbB9MemMHdFOenQi3ckjx4c2EcIDDyAGswI52K0nAVd0tQYbohQHxy2JAjVxXZb+8+njDLYDBXFsnhRJamNAT2bq1MfQ+pbnAwgNPKVUF') format('woff2'),
+  url('iconfont.woff?t=1596422319471') format('woff'),
+  url('iconfont.ttf?t=1596422319471') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1596422319471#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 20px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-good:before {
+  content: "\e753";
+}
+
+.icon-account:before {
+  content: "\e7b2";
+}
+
+.icon-comments:before {
+  content: "\e7b3";
+}
+
