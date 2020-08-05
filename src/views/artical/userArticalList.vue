@@ -80,7 +80,7 @@ export default {
 	},
 	methods: {
 		handleEdit(index, row) {
-			console.log(index, row);
+			this.$router.push({ name: 'editArtical', params: { articalID: '12' } });
 		},
 		handleDelete(index, row) {
 			console.log(index, row);

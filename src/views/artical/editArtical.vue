@@ -1,14 +1,12 @@
 <template>
 	<div class="create-artical">
-		<el-page-header @back="goBack" content="撰写文章"></el-page-header>
+		<el-page-header @back="goBack" content="编辑文章"></el-page-header>
 		<el-divider></el-divider>
 		<el-form ref="form" :model="form" label-width="80px" class="form-create-artical">
 			<el-form-item><el-input v-model="form.name" placeholder="输入文章标题"></el-input></el-form-item>
-			<!-- <el-form-item> <textarea name="" id="editor" ></textarea></el-form-item> -->
 			<el-form-item><vue-simplemde v-model="form.content" ref="markdownEditor" :highlight="true" /></el-form-item>
-			<!-- <el-form-item><el-input type="textarea" id="editor"></el-input></el-form-item> -->
 			<el-form-item>
-				<el-button type="primary" @click="onSubmit">发布</el-button>
+				<el-button type="primary" @click="onSubmit">重新发布</el-button>
 				<el-button>预览</el-button>
 			</el-form-item>
 		</el-form>
@@ -17,7 +15,6 @@
 <script>
 import VueSimplemde from 'vue-simplemde';
 import hljs from 'highlight.js';
-
 window.hljs = hljs;
 export default {
 	name: 'createArtical',
@@ -35,12 +32,17 @@ export default {
 			}
 		};
 	},
+	created() {
+		//拿文章数据
+	},
 	mounted() {},
 	methods: {
 		onSubmit() {
 			console.log('submit!');
 		},
+		//返回主页或者管理页面
 		goBack() {
+			
 			this.$router.push({ name: 'home' });
 		}
 	}

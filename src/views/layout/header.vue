@@ -57,7 +57,7 @@ export default {
 			// avatarImgSrc:'../../assets/img/user.jpg',
 			activeIndex: '/home',
 			input: '',
-			msgNum: 10
+			msgNum: 0
 		};
 	},
 	methods: {
@@ -76,12 +76,14 @@ export default {
 					break;
 				case 'logout':
 					{
-						console.log('logout');
+						this.$store.commit('SET_TOKEN', '');
+						this.$router.push({ name: 'login' });
+						// console.log('logout');
 					}
 					break;
 				case 'user':
 					{
-						console.log('user');
+						this.$router.push({ name: 'user' });
 					}
 					break;
 				case 'articalList':

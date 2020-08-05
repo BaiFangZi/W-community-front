@@ -44,7 +44,7 @@ export default {
 	background-color: #fff;
 } */
 .view-artical .el-page-header {
-	padding: 10px 0 0 10px;
+	padding: 10px 0 10px 10px;
 	background-color: #fff;
 }
 .view-artical .artical-body,
@@ -69,5 +69,8 @@ export default {
 	text-align: left;
 	padding: 10px 20px;
 	border-bottom: 1px solid #f0f0f0;
+}
+.view-artical .el-divider {
+	margin: 0;
 }
 </style>
