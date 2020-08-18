@@ -34,6 +34,9 @@ export default {
 </script>
 
 <style>
+.community{
+	border-radius: 5px;
+}
 .community .community-page-header {
 	/* margin-bottom: 20px; */
 	padding: 10px 0 10px 10px;

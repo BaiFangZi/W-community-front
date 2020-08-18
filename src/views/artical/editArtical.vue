@@ -53,7 +53,7 @@ export default {
 @import '~highlight.js/styles/atom-one-dark.css';
 </style>
 <style>
-.create-artical .form-create-artical {
+/* .create-artical .form-create-artical {
 	width: 80%;
 	margin: 0 auto;
 	background-color: #fff;
@@ -68,7 +68,7 @@ export default {
 }
 .create-artical .el-divider {
 	margin: 0;
-}
+} */
 /* .markdown-editor .CodeMirror {
   height: 300px;
 } */

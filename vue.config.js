@@ -1,4 +1,5 @@
 const path = require('path')
+const loader = require('sass-loader')
 
 function pathResolve(dir) {
 	return path.join(__dirname, dir)
@@ -17,7 +18,7 @@ module.exports = {
 	runtimeCompiler: false,
 	productionSourceMap: true, // 不需要生产环境的设置false可以减小dist文件大小，加速构建
 	devServer: {
-		disableHostCheck:true,
+		disableHostCheck: true,
 		open: true, // npm run serve后自动打开页面
 		host: '0.0.0.0', // 匹配本机IP地址(默认是0.0.0.0)
 		port: 8080, // 开发服务器运行端口号
@@ -31,6 +32,16 @@ module.exports = {
 			},
 		}
 	},
+	css: {
+		loaderOptions: {
+			css: {
+				// 'sass-loader'
+			}
+		}
+	},
+	pluginOptions: {
+
+	},
 	chainWebpack: config => {
 		config.resolve.alias
 			.set("@", pathResolve("src"))
@@ -40,7 +51,6 @@ module.exports = {
 			.set("@public", pathResolve("public"))
 			.set("@utils", pathResolve("src/utils"))
 			.set("@api", pathResolve("src/api"))
-
 	},
 	// configureWebpack: {
 	// 	resolve: {
