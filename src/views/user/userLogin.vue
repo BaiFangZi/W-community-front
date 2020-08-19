@@ -111,28 +111,4 @@ export default {
     }
   }
 }
-
-// .form-login {
-// 	width: calc(33% + 13px);
-// 	margin: 0 auto;
-// 	background-color: #fff;
-// 	padding: 20px;
-// 	border-radius: 8px;
-// 	margin-top: 100px;
-// }
-// .form-login .verifyImg {
-// 	width: 300px;
-// 	height: 40px;
-
-// }
-// .form-login .verifyImg img {
-// 	width: 150px;
-// 	height: 100%;
-// }
-// .form-login .verifyImg span {
-// 	margin: 10px;
-// }
-// .form-login .verifyImg span:hover {
-// 	color: #409eff;
-// }
 </style>
