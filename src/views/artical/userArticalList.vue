@@ -111,6 +111,9 @@ export default {
       currentPage: 1,
     };
   },
+  created() {
+    // console.log(this.editor);
+  },
   methods: {
     handleEdit(index, row) {
       this.$router.push({ name: "editArtical", params: { articalID: "12" } });

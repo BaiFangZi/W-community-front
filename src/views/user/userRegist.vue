@@ -7,13 +7,13 @@
     label-width="80px"
     class="form-regist"
   >
-    <el-form-item label="用户名" prop="name"
-      ><el-input v-model="ruleForm.name"></el-input
+    <el-form-item label="用户名" prop="username"
+      ><el-input v-model="ruleForm.username"></el-input
     ></el-form-item>
-    <el-form-item label="密码" prop="pass"
+    <el-form-item label="密码" prop="password"
       ><el-input
         type="password"
-        v-model="ruleForm.pass"
+        v-model="ruleForm.password"
         autocomplete="off"
       ></el-input
     ></el-form-item>
@@ -34,7 +34,12 @@
       </div>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+      <el-button
+        :disabled="isLanding"
+        type="primary"
+        @click="submitForm('ruleForm')"
+        >提交</el-button
+      >
       <el-button @click="resetForm('ruleForm')">重置</el-button>
     </el-form-item>
   </el-form>
@@ -60,7 +65,7 @@ export default {
     var validatePass2 = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请再次输入密码"));
-      } else if (value !== this.ruleForm.pass) {
+      } else if (value !== this.ruleForm.password) {
         callback(new Error("两次输入密码不一致!"));
       } else {
         callback();
@@ -72,34 +77,43 @@ export default {
     };
     return {
       ruleForm: {
-        pass: "",
+        password: "",
         checkPass: "",
-        name: "",
+        username: "",
         verifyCode: "",
       },
       rules: {
-        pass: [{ validator: validatePass, trigger: "blur" }],
+        password: [{ validator: validatePass, trigger: "blur" }],
         checkPass: [{ validator: validatePass2, trigger: "blur" }],
-        name: [{ validator: checkName, trigger: "blur" }],
+        username: [{ validator: checkName, trigger: "blur" }],
         verifyCode: [{ validator: verifyCode, trigger: "blur" }],
       },
+      isLanding: false,
     };
   },
   methods: {
     submitForm(formName) {
-      // console.log(formName)
+      this.isLanding = true;
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          console.log(this.ruleForm);
-          regist(this.ruleForm)
+          const { username, password } = this.ruleForm;
+          regist({
+            username,
+            password,
+          })
             .then((res) => {
+              this.$router.push({ name: "home" });
               console.log("创建成功");
             })
             .catch((err) => {
               console.log(err);
+            })
+            .finally(() => {
+              this.isLanding = false;
             });
         } else {
           console.log("error submit!!");
+           this.isLanding = false;
           return false;
         }
       });
@@ -121,7 +135,7 @@ export default {
   .verifyImg {
     width: 300px;
     height: 40px;
-    img { 
+    img {
       width: 150px;
       height: 100%;
     }

@@ -1,5 +1,6 @@
 export default {
-	userToken:'',
+	userToken: '',
+	isLogin: false
 	// get userToken() {
 	// 	return localStorage.getItem('token')
 	// },

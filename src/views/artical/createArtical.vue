@@ -12,12 +12,13 @@
         ><el-input v-model="form.name" placeholder="输入文章标题"></el-input
       ></el-form-item>
       <!-- <el-form-item> <textarea name="" id="editor" ></textarea></el-form-item> -->
-      <el-form-item
-        ><vue-simplemde
-          v-model="form.content"
-          ref="markdownEditor"
-          :highlight="true"
-      /></el-form-item>
+      <el-form-item>
+        <editor-bar
+          v-model="detail"
+          :isClear="isClear"
+          @change="change"
+        ></editor-bar>
+      </el-form-item>
       <!-- <el-form-item><el-input type="textarea" id="editor"></el-input></el-form-item> -->
       <el-form-item>
         <el-button type="primary" @click="onSubmit">发布</el-button>
@@ -27,14 +28,13 @@
   </div>
 </template>
 <script>
-import VueSimplemde from "vue-simplemde";
-import hljs from "highlight.js";
-
-window.hljs = hljs;
+// import hljs from "highlight.js";
+import EditorBar from "@components/editor";
+// window.hljs = hljs;
 export default {
   name: "createArtical",
   components: {
-    VueSimplemde,
+    EditorBar,
   },
   data() {
     return {
@@ -42,9 +42,8 @@ export default {
         name: "",
         content: "",
       },
-      configs: {
-        spellChecker: false, // 禁用拼写检查
-      },
+      isClear: false,
+      detail: "",
     };
   },
   mounted() {},
@@ -55,13 +54,13 @@ export default {
     goBack() {
       this.$router.push({ name: "home" });
     },
+    change(val) {//编辑框改变事件
+      // console.log(val);
+    },
   },
 };
 </script>
-<style>
-@import "~simplemde/dist/simplemde.min.css";
-@import "~highlight.js/styles/atom-one-dark.css";
-</style>
+<style></style>
 <style lang="scss">
 .create-artical {
   background-color: #fff;

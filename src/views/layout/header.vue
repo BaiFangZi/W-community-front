@@ -27,11 +27,11 @@
         <div class="user">
           <el-dropdown @command="userRegist" trigger="click">
             <el-avatar src=""></el-avatar>
-            <el-dropdown-menu slot="dropdown" v-if="!isLogin">
+            <el-dropdown-menu slot="dropdown" v-if="!$store.state.isLogin">
               <el-dropdown-item command="login">登陆</el-dropdown-item>
               <el-dropdown-item command="regist">注册</el-dropdown-item>
             </el-dropdown-menu>
-            <el-dropdown-menu slot="dropdown" v-if="isLogin">
+            <el-dropdown-menu slot="dropdown" v-if="$store.state.isLogin">
               <el-dropdown-item command="user">个人中心</el-dropdown-item>
 
               <el-dropdown-item command="logout">退出登陆</el-dropdown-item>
@@ -72,6 +72,9 @@ export default {
       user: `/user/232/articalList`,
     };
   },
+  created() {
+    console.log;
+  },
   methods: {
     userRegist(command) {
       switch (command) {
@@ -91,7 +94,7 @@ export default {
             this.$store.commit("SET_TOKEN", "");
             this.$router.push({ name: "login" });
             // console.log('logout');
-          }
+          }  
           break;
         case "user":
           {
@@ -162,9 +165,15 @@ export default {
     .user {
       padding-top: 10px;
       margin: 0 auto;
+      .el-avatar {
+        outline: none;
+      }
       @include head-navigation-icon();
     }
     .createBlog {
+      .el-dropdown span {
+        outline: none;
+      }
       @include head-navigation-icon();
     }
     .siteMsg {

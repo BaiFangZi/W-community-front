@@ -1,6 +1,7 @@
 import Axios from 'axios'
 // import router from '../router/index.js'
-
+// import promiseFinally from 'promise.prototype.finally'
+// promiseFinally.shim()
 const http = Axios.create({
 	timeout: 2000,
 	// baseURL: 'http://192.168.1.71:8080/',
@@ -38,8 +39,6 @@ http.interceptors.response.use(response => {
 		case 504:
 			statusCode_504();
 			break;
-
-
 	}
 	return Promise.reject(error)
 

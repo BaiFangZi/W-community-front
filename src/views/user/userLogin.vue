@@ -7,13 +7,13 @@
     label-width="80px"
     class="form-login"
   >
-    <el-form-item label="用户名" prop="name"
-      ><el-input v-model="ruleForm.name"></el-input
+    <el-form-item label="用户名" prop="username"
+      ><el-input v-model="ruleForm.username"></el-input
     ></el-form-item>
-    <el-form-item label="密码" prop="pass"
+    <el-form-item label="密码" prop="password"
       ><el-input
         type="password"
-        v-model="ruleForm.pass"
+        v-model="ruleForm.password"
         autocomplete="off"
       ></el-input
     ></el-form-item>
@@ -30,6 +30,7 @@
       ><el-button
         style="width: 100%;"
         type="primary"
+        :disabled="isLanding"
         @click="submitForm('ruleForm')"
         >登陆</el-button
       ></el-form-item
@@ -47,7 +48,7 @@ export default {
         callback("输入4-16位字母、数字、下划线的组合");
       }
     };
-    var validatePass = (rule, value, callback) => {
+    var validatePsd = (rule, value, callback) => {
       if (/^\w{6,16}$/.test(value)) {
         callback();
       } else {
@@ -60,27 +61,58 @@ export default {
     };
     return {
       ruleForm: {
-        pass: "",
-        name: "",
+        username: "",
+        password: "",
         verifyCode: "",
       },
       rules: {
-        pass: [{ validator: validatePass, trigger: "blur" }],
-
-        name: [{ validator: checkName, trigger: "blur" }],
+        username: [{ validator: checkName, trigger: "blur" }],
+        password: [{ validator: validatePsd, trigger: "blur" }],
         verifyCode: [{ validator: verifyCode, trigger: "blur" }],
       },
+      isLanding: false,
     };
   },
   methods: {
     submitForm(formName) {
+      console.log(1234)
+      this.isLanding = true;
       // console.log(formName)
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          this.$router.push({ name: "home" });
-          console.log(valid);
+          const { username, password } = this.ruleForm;
+          login({
+            username,
+            password,
+          })
+            .then((res) => {
+              switch (res.data.code) {
+                case 0:
+                  {
+                    this.$router.push({ name: "home" });
+                    this.$store.state.isLogin = true;
+                  }
+                  break;
+                case 10001:
+                  {
+                    this.$notify.error({
+                      title: "错误",
+                      message: "用户名或密码错误",
+                    });
+                  }
+                  break;
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            })
+            .finally(() => {
+              console.log(3344);
+              this.isLanding = false;
+            });
         } else {
           console.log("error submit!!");
+          this.isLanding = false;
           return false;
         }
       });

@@ -12,12 +12,7 @@
         ><el-input v-model="form.name" placeholder="输入标题"></el-input
       ></el-form-item>
       <!-- <el-form-item> <textarea name="" id="editor" ></textarea></el-form-item> -->
-      <el-form-item
-        ><vue-simplemde
-          v-model="form.content"
-          ref="markdownEditor"
-          :highlight="true"
-      /></el-form-item>
+      <el-form-item> </el-form-item>
       <!-- <el-form-item><el-input type="textarea" id="editor"></el-input></el-form-item> -->
       <el-form-item>
         <el-button type="primary" @click="onSubmit">发布</el-button>
@@ -28,23 +23,15 @@
   </div>
 </template>
 <script>
-import VueSimplemde from "vue-simplemde";
-import hljs from "highlight.js";
 
-window.hljs = hljs;
 export default {
   name: "createArtical",
-  components: {
-    VueSimplemde,
-  },
+  components: {},
   data() {
     return {
       form: {
         name: "",
         content: "",
-      },
-      configs: {
-        spellChecker: false, // 禁用拼写检查
       },
     };
   },
@@ -59,10 +46,7 @@ export default {
   },
 };
 </script>
-<style>
-@import "~simplemde/dist/simplemde.min.css";
-@import "~highlight.js/styles/atom-one-dark.css";
-</style>
+<style></style>
 <style lang="scss">
 .create-problem {
   background-color: #fff;
