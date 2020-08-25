@@ -49,26 +49,5 @@ export default {
   },
 };
 </script>
-<style>
-</style>
-<style>
-/* .create-artical .form-create-artical {
-	width: 80%;
-	margin: 0 auto;
-	background-color: #fff;
-	padding: 20px;
-	border-radius: 8px;
-}
-.create-artical {
-	background-color: #fff;
-}
-.create-artical .el-page-header {
-	padding: 10px;
-}
-.create-artical .el-divider {
-	margin: 0;
-} */
-/* .markdown-editor .CodeMirror {
-  height: 300px;
-} */
-</style>
+<style></style>
+<style></style>

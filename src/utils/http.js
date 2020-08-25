@@ -1,19 +1,20 @@
 import Axios from 'axios'
+import store from '@/store'
+import {
+	getToken
+} from '@utils/auth'
 // import router from '../router/index.js'
-// import promiseFinally from 'promise.prototype.finally'
-// promiseFinally.shim()
+
 const http = Axios.create({
-	timeout: 2000,
+	timeout: 5000,
 	// baseURL: 'http://192.168.1.71:8080/',
 })
 // 每次请求都为http头增加Authorization字段，其内容为Token
 http.interceptors.request.use(
 	config => {
-		const token = localStorage.getItem('token');
-		if (token) {
-			config.headers.common['Authorization'] = `JWT ${token}`;
-			// config.headers['token'] = token
-		}
+		// if (store.state.user.token) {
+		// 	config.headers.common['Authorization'] = getToken();
+		// }
 		// console.log(config)
 		return config;
 	},

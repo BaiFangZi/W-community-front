@@ -75,7 +75,6 @@ export default {
   },
   methods: {
     submitForm(formName) {
-      console.log(1234)
       this.isLanding = true;
       // console.log(formName)
       this.$refs[formName].validate((valid) => {
@@ -107,7 +106,6 @@ export default {
               console.log(err);
             })
             .finally(() => {
-              console.log(3344);
               this.isLanding = false;
             });
         } else {

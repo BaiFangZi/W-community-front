@@ -91,7 +91,7 @@ export default {
           break;
         case "logout":
           {
-            this.$store.commit("SET_TOKEN", "");
+            // this.$store.commit("SET_TOKEN", "");
             this.$router.push({ name: "login" });
             // console.log('logout');
           }  

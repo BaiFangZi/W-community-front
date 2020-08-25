@@ -51,6 +51,8 @@ module.exports = {
 			.set("@public", pathResolve("public"))
 			.set("@utils", pathResolve("src/utils"))
 			.set("@api", pathResolve("src/api"))
+			.set("@filters", pathResolve("src/filters"))
+
 	},
 	// configureWebpack: {
 	// 	resolve: {

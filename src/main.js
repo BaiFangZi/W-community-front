@@ -12,9 +12,17 @@ Vue.use(ElementUI)
 import App from './App.vue'
 
 Vue.config.productionTip = false
-import HTTP from '@utils/http'
 
+import HTTP from '@utils/http'
 Vue.prototype.$http = HTTP
+
+import * as filters from '@filters'
+
+
+Object.keys(filters).forEach(key => {
+	Vue.filter(key, filters[key])
+})
+
 
 // new Vue({
 // 	el: '#app',
