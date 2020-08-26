@@ -35,7 +35,7 @@
     </el-form-item>
     <el-form-item>
       <el-button
-        :disabled="isLanding"
+        :loading="isLoading"
         type="primary"
         @click="submitForm('ruleForm')"
         >提交</el-button
@@ -88,12 +88,12 @@ export default {
         username: [{ validator: checkName, trigger: "blur" }],
         verifyCode: [{ validator: verifyCode, trigger: "blur" }],
       },
-      isLanding: false,
+      isLoading: false,
     };
   },
   methods: {
     submitForm(formName) {
-      this.isLanding = true;
+      this.isLoading = true;
       this.$refs[formName].validate((valid) => {
         if (valid) {
           const { username, password } = this.ruleForm;
@@ -102,18 +102,23 @@ export default {
             password,
           })
             .then((res) => {
-              this.$router.push({ name: "home" });
-              console.log("创建成功");
+              if (res.data.code === 0) {
+                this.$router.push({ name: "home" });
+              } else {
+                this.$notify.error({
+                  title: "错误",
+                  message: res.data.msg,
+                });
+              }
             })
             .catch((err) => {
               console.log(err);
             })
             .finally(() => {
-              this.isLanding = false;
+              this.isLoading = false;
             });
         } else {
-          console.log("error submit!!");
-           this.isLanding = false;
+          this.isLoading = false;
           return false;
         }
       });

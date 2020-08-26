@@ -2,12 +2,12 @@
   <el-row>
     <el-col :span="4" :offset="1">
       <el-card>
-        <div class="user-artical-info">
+        <div class="user-note-info">
           <img :src="imgSrc" alt="" />
           <el-divider></el-divider>
           <div>
             <i class="el-icon-s-operation"></i>
-            <span>文章：{{ articalCount }}</span>
+            <span>文章：{{ noteCount }}</span>
           </div>
         </div>
       </el-card>
@@ -28,7 +28,7 @@
               type="success"
               plain
               style="padding: 10px 20px;"
-              @click="cerateArtical"
+              @click="cerateNote"
               >发布文章</el-button
             >
             <el-button
@@ -108,7 +108,7 @@ export default {
         },
       ],
       search: "",
-      articalCount: 0,
+      noteCount: 0,
       imgSrc: "",
       currentPage: 1,
     };
@@ -118,17 +118,17 @@ export default {
   },
   methods: {
     handleEdit(index, row) {
-      this.$router.push({ name: "editArtical", params: { articalID: "12" } });
+      this.$router.push({ name: "editNote", params: { noteID: "12" } });
     },
     handleDelete(index, row) {
       console.log(index, row);
     },
     handlView(index, row) {
-      this.$router.push({ name: "viewArtical", params: { articalID: "223" } });
+      this.$router.push({ name: "viewNote", params: { noteID: "223" } });
       // console.log(index, row);
     },
-    cerateArtical() {
-      this.$router.push({ name: "createArtical" });
+    cerateNote() {
+      this.$router.push({ name: "createNote" });
     },
     cerateProblem() {
       this.$router.push({ name: "createProblem" });
@@ -143,7 +143,7 @@ export default {
 };
 </script>
 <style lang="scss">
-.user-artical-info {
+.user-note-info {
   img {
     width: 100%;
   }

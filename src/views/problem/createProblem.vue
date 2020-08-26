@@ -1,12 +1,12 @@
 <template>
-  <div class="create-artical">
+  <div class="create-note">
     <el-page-header @back="goBack" content="撰写问题"></el-page-header>
     <el-divider></el-divider>
     <el-form
       ref="ruleForm"
       :model="ruleForm"
       label-width="80px"
-      class="form-create-artical"
+      class="form-create-note"
       :rules="rules"
     >
       <el-form-item prop="title"
@@ -69,6 +69,7 @@ export default {
           createProblem({
             title,
             content, //xxs？？？
+            userId: "baifangzi",
           })
             .then((res) => {
               console.log(res);
@@ -97,9 +98,9 @@ export default {
 </script>
 <style></style>
 <style lang="scss">
-// .create-artical {
+// .create-note {
 //   background-color: #fff;
-//   .form-create-artical {
+//   .form-create-note {
 //     width: 80%;
 //     margin: 0 auto;
 //     background-color: #fff;

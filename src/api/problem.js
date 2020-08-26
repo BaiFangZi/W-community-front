@@ -8,8 +8,20 @@ export const getLatestProblem = () => request({
     // data: userInfo,
 })
 //发布新问题
-export const createProblem = (data) => request({
+export const createProblem = (info) => request({
     url: '/api/v1/problem/create',
     method: 'post',
-    data
+    data: {
+        ...info,
+        type: 'problem',
+        date: Date(),
+        likeNum: 0,
+        commentNum: 0,
+        viewNum: 0,
+    }
 })
+// //获取问题板块列表
+// export const getNoteList = () => request({
+//     url: '/api/v1/note/list',
+//     method: 'get',
+// })

@@ -2,14 +2,14 @@ import VueRouter from 'vue-router'
 import Vue from 'vue'
 
 //主页
-import Home from '@views/common/home.vue'
+import Home from '@views/home/index'
 import About from '@views/common/about.vue'
-import Community from '@views/common/community.vue'
+import Community from '@views/community/index.vue'
 //文章
-import CreateArtical from '@views/artical/createArtical.vue'
-import UserArticalList from '@views/artical/userArticalList.vue'
-import ViewArtical from '@views/artical/viewArtical.vue'
-import EditArtical from '@views/artical/editArtical.vue'
+import CreateNote from '@views/note/createNote.vue'
+import UserNoteList from '@views/note/userNoteList.vue'
+import ViewNote from '@views/note/viewNote.vue'
+import EditNote from '@views/note/editNote.vue'
 //问题
 import CreateProblem from '@views/problem/createProblem.vue'
 //用户
@@ -17,7 +17,7 @@ import Regist from '@views/user/userRegist.vue'
 import Login from '@views/user/userLogin.vue'
 import User from '@views/user/user.vue'
 //布局框架
-import Layout from '@views/layout/layout.vue'
+import Layout from '@/layout/layout.vue'
 
 
 
@@ -71,26 +71,26 @@ export default new VueRouter({
 					component: Community,
 				},
 				{
-					path: '/user/:userID/articalList', //单一用户文章列表
-					name: 'userArticalList',
-					component: UserArticalList
+					path: '/user/:userID/noteList', //单一用户文章列表
+					name: 'userNoteList',
+					component: UserNoteList
 				},
 
 				{
-					path: '/artical/create', //创建文章
-					name: 'createArtical',
-					component: CreateArtical
+					path: '/note/create', //创建文章
+					name: 'createNote',
+					component: CreateNote
 				},
 
 				{
-					path: '/artical/:articalID', //查看某一文章
-					name: 'viewArtical',
-					component: ViewArtical
+					path: '/note/:noteID', //查看某一文章
+					name: 'viewNote',
+					component: ViewNote
 				},
 				{
-					path: '/artical/edit/:articalID', //查看某一文章
-					name: 'editArtical',
-					component: EditArtical
+					path: '/note/edit/:noteID', //编辑某一文章
+					name: 'editNote',
+					component: EditNote
 				},
 				{
 					path: '/problem/create', //创建问题
