@@ -26,8 +26,8 @@ export default {
   created() {
     // console.log(this.$route.params);
     this.$nextTick(() => {
-      this.$route.params.communityID == "note"
-        ? (this.sectionTitle = "文章板块")
+      this.$route.params.communityId == "note"
+        ? (this.sectionTitle = "随笔板块")
         : (this.sectionTitle = "问答板块");
     });
     

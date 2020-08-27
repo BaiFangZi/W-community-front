@@ -118,13 +118,13 @@ export default {
   },
   methods: {
     handleEdit(index, row) {
-      this.$router.push({ name: "editNote", params: { noteID: "12" } });
+      this.$router.push({ name: "editNote", params: { articalId: "12" } });
     },
     handleDelete(index, row) {
       console.log(index, row);
     },
     handlView(index, row) {
-      this.$router.push({ name: "viewNote", params: { noteID: "223" } });
+      this.$router.push({ name: "viewNote", params: { articalId: "223" } });
       // console.log(index, row);
     },
     cerateNote() {

@@ -12,6 +12,7 @@ import ViewNote from '@views/note/viewNote.vue'
 import EditNote from '@views/note/editNote.vue'
 //问题
 import CreateProblem from '@views/problem/createProblem.vue'
+import ViewProblem from '@views/problem/viewProblem.vue'
 //用户
 import Regist from '@views/user/userRegist.vue'
 import Login from '@views/user/userLogin.vue'
@@ -66,7 +67,7 @@ export default new VueRouter({
 					component: About,
 				},
 				{
-					path: '/community/:communityID', //社区板块
+					path: '/community/:communityId', //社区板块
 					name: 'community',
 					component: Community,
 				},
@@ -83,12 +84,12 @@ export default new VueRouter({
 				},
 
 				{
-					path: '/note/:noteID', //查看某一文章
+					path: '/note/view/:articalId', //查看某一文章
 					name: 'viewNote',
 					component: ViewNote
 				},
 				{
-					path: '/note/edit/:noteID', //编辑某一文章
+					path: '/note/edit/:articalId', //编辑某一文章
 					name: 'editNote',
 					component: EditNote
 				},
@@ -96,6 +97,11 @@ export default new VueRouter({
 					path: '/problem/create', //创建问题
 					name: 'createProblem',
 					component: CreateProblem
+				},
+				{
+					path: '/problem/view/:articalId', //创建问题
+					name: 'viewProblem',
+					component: ViewProblem
 				},
 				{
 					path: '/user', //创建问题

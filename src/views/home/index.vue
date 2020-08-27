@@ -6,7 +6,7 @@
           <span>文章板块</span>
           <router-link
             class="enter"
-            :to="{ name: 'community', params: { communityID: 'note' } }"
+            :to="{ name: 'community', params: { communityId: 'note' } }"
             >进入</router-link
           >
         </div>
@@ -28,7 +28,7 @@
           <span>问答板块</span>
           <router-link
             class="enter"
-            :to="{ name: 'community', params: { communityID: 'problem' } }"
+            :to="{ name: 'community', params: { communityId: 'problem' } }"
             >进入</router-link
           >
         </div>
@@ -55,9 +55,10 @@
 </template>
 <script>
 import { getToken } from "@utils/auth";
-import { getLatestNote } from "@api/note";
-import { getLatestProblem } from "@api/problem";
 
+// import { getLatestNote } from "@api/note";
+// import { getLatestProblem } from "@api/problem";
+import { getArticalLatest } from "@api/artical";
 
 export default {
   name: "home",
@@ -68,18 +69,10 @@ export default {
     };
   },
   created() {
-    getLatestNote()
-      .then((res) => {
-        this.note = res.data.data;
-        // console.log(this.note);
-        // console.log(res);
-      })
-      .catch((err) => {});
-    getLatestProblem()
-      .then((res) => {
-        this.problem = res.data.data;
-      })
-      .catch((err) => {});
+    getArticalLatest().then((res) => {
+      this.note = res.data.noteList;
+      this.problem = res.data.problemList;
+    });
   },
   mounted() {
     // console.log(getToken());

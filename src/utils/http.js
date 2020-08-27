@@ -6,7 +6,7 @@ import {
 // import router from '../router/index.js'
 
 const http = Axios.create({
-	timeout: 5000,
+	// timeout: 5000,
 	// baseURL: 'http://192.168.1.71:8080/',
 })
 // 每次请求都为http头增加Authorization字段，其内容为Token
