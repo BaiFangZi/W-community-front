@@ -43,7 +43,7 @@
             <!-- 	<el-button icon="el-icon-plus"></el-button> -->
             <span><i class="el-icon-plus header-icon"></i></span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="artical">发布文章</el-dropdown-item>
+              <el-dropdown-item command="note">发布文章</el-dropdown-item>
               <el-dropdown-item command="problem">发布问题</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
@@ -69,7 +69,7 @@ export default {
       activeIndex: "/home",
       input: "",
       msgNum: 0,
-      user: `/user/232/articalList`,
+      user: `/user/232/noteList`,
     };
   },
   created() {
@@ -101,22 +101,22 @@ export default {
             this.$router.push({ name: "user" });
           }
           break;
-        case "articalList":
+        case "noteList":
           {
             this.$router.push({
-              name: "userArticalList",
+              name: "userNoteList",
               params: { userID: "12" },
             });
-            // console.log('articalList');
+            // console.log('noteList');
           }
           break;
       }
     },
     createBlog(command) {
       switch (command) {
-        case "artical":
+        case "note":
           {
-            this.$router.push({ name: "createArtical" });
+            this.$router.push({ name: "createNote" });
           }
           break;
         case "problem":

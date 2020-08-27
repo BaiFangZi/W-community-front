@@ -6,14 +6,14 @@
           <span>文章板块</span>
           <router-link
             class="enter"
-            :to="{ name: 'community', params: { communityID: 'artical' } }"
+            :to="{ name: 'community', params: { communityID: 'note' } }"
             >进入</router-link
           >
         </div>
         <ul class="community-card-content">
           <li
             class="community-card-content-item"
-            v-for="(item, index) in artical"
+            v-for="(item, index) in note"
             :key="index"
           >
             {{ item.title | stringMaxLength(40) }}
@@ -55,7 +55,7 @@
 </template>
 <script>
 import { getToken } from "@utils/auth";
-import { getLatestArtical } from "@api/artical";
+import { getLatestNote } from "@api/note";
 import { getLatestProblem } from "@api/problem";
 
 
@@ -63,15 +63,15 @@ export default {
   name: "home",
   data() {
     return {
-      artical: [],
+      note: [],
       problem: [],
     };
   },
   created() {
-    getLatestArtical()
+    getLatestNote()
       .then((res) => {
-        this.artical = res.data.data;
-        // console.log(this.artical);
+        this.note = res.data.data;
+        // console.log(this.note);
         // console.log(res);
       })
       .catch((err) => {});

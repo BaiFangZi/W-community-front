@@ -1,10 +1,10 @@
 <template>
-  <div class="view-artical">
-    <div class="artical-body">
+  <div class="view-note">
+    <div class="note-body">
       <el-page-header @back="goBack" content="文章内容"></el-page-header>
       <el-divider></el-divider>
-      <h2>{{ articalHeader }}</h2>
-      <span>{{ articalAuthor }}</span>
+      <h2>{{ noteHeader }}</h2>
+      <span>{{ noteAuthor }}</span>
       <div class="content" v-html="content"></div>
     </div>
     <div class="vote-body">
@@ -25,11 +25,11 @@
 
 <script>
 export default {
-  name: "viewArtical",
+  name: "viewNote",
   data() {
     return {
-      articalHeader: "这是文章标题",
-      articalAuthor: "xiaoming",
+      noteHeader: "这是文章标题",
+      noteAuthor: "xiaoming",
       content: "<p>这是文章内容</p>",
       discussCount: 0,
     };
@@ -47,7 +47,7 @@ export default {
   border: 1px solid #dde2d7;
   text-align: center;
 }
-.view-artical {
+.view-note {
   .el-page-header {
     padding: 10px 0 10px 10px;
     background-color: #fff;
@@ -55,7 +55,7 @@ export default {
   .el-divider {
     margin: 0;
   }
-  .artical-body {
+  .note-body {
     @include wrapper();
     .content {
       padding: 20px 0;
@@ -76,28 +76,28 @@ export default {
 
   //   }
 }
-// .view-artical .artical-body,
-// .view-artical .vote-body,
-// .view-artical .discuss-body {
+// .view-note .note-body,
+// .view-note .vote-body,
+// .view-note .discuss-body {
 //   background-color: #fff;
 //   border: 1px solid #dde2d7;
 //   text-align: center;
 // }
 
-// .view-artical .artical-body .content {
+// .view-note .note-body .content {
 //   //   padding: 20px 0;
 // }
-// .view-artical .vote-body,
-// .view-artical .discuss-body {
+// .view-note .vote-body,
+// .view-note .discuss-body {
 //   padding: 20px 0;
 //   margin-top: 50px;
 // }
-// .view-artical .discuss-body .discuss {
+// .view-note .discuss-body .discuss {
 //   text-align: left;
 //   padding: 10px 20px;
 //   border-bottom: 1px solid #f0f0f0;
 // }
-.view-artical .el-divider {
+.view-note .el-divider {
   margin: 0;
 }
 </style>

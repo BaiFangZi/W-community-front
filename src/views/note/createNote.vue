@@ -1,12 +1,12 @@
 <template>
-  <div class="create-artical">
+  <div class="create-note">
     <el-page-header @back="goBack" content="撰写文章"></el-page-header>
     <el-divider></el-divider>
     <el-form
       ref="ruleForm"
       :model="ruleForm"
       label-width="80px"
-      class="form-create-artical"
+      class="form-create-note"
       :rules="rules"
     >
       <el-form-item prop="title"
@@ -17,7 +17,7 @@
       ></el-form-item>
       <el-form-item>
         <markdown-editor
-          @get-value="createArtical"
+          @get-value="createNote"
           :isPublishing="isPublishing"
         ></markdown-editor>
       </el-form-item>
@@ -35,12 +35,12 @@
 </template>
 <script>
 // import hljs from "highlight.js";
-import { createArtical } from "@api/artical";
+import { createNote } from "@api/note";
 import MarkdownEditor from "@components/editor/MarkdownEditor";
 
 // window.hljs = hljs;
 export default {
-  name: "createArtical",
+  name: "createNote",
   components: {
     MarkdownEditor,
   },
@@ -67,7 +67,7 @@ export default {
   created() {},
   mounted() {},
   methods: {
-    createArtical(content) {
+    createNote(content) {
       this.isPublishing = true;
       this.ruleForm.content = content;
       this.$refs.ruleForm.validate((valid) => {
@@ -76,9 +76,10 @@ export default {
 
           // console.log(title);
           // console.log(content);
-          createArtical({
+          createNote({
             title,
             content, //xxs？？？
+            userId: "baifangzi",
           })
             .then((res) => {
               console.log(res);
@@ -107,9 +108,9 @@ export default {
 </script>
 <style></style>
 <style lang="scss">
-.create-artical {
+.create-note {
   background-color: #fff;
-  .form-create-artical {
+  .form-create-note {
     width: 80%;
     margin: 0 auto;
     background-color: #fff;
@@ -124,8 +125,6 @@ export default {
   }
 }
 </style>
-
-
 
 <style lang="scss">
 .create-problem {

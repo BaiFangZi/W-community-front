@@ -1,12 +1,12 @@
 <template>
-  <div class="create-artical">
+  <div class="create-note">
     <el-page-header @back="goBack" content="编辑文章"></el-page-header>
     <el-divider></el-divider>
     <el-form
       ref="form"
       :model="form"
       label-width="80px"
-      class="form-create-artical"
+      class="form-create-note"
     >
       <el-form-item
         ><el-input v-model="form.name" placeholder="输入文章标题"></el-input
@@ -24,7 +24,7 @@
 // import hljs from 'highlight.js';
 // window.hljs = hljs;
 export default {
-  name: "createArtical",
+  name: "createNote",
   components: {},
   data() {
     return {
