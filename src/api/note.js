@@ -38,9 +38,14 @@ export const getNoteContent = (params) => request({
     params,
 })
 //喜欢这个随笔
-//点赞这个问题
 export const likeNote = (params) => request({
     url: '/api/v1/note/like',
+    method: 'get',
+    params
+})
+//搜索随笔
+export const searchNote = (params) => request({
+    url: '/api/v1/note/search',
     method: 'get',
     params
 })

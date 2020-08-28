@@ -16,7 +16,11 @@
             v-for="(item, index) in note"
             :key="index"
           >
-            {{ item.title | stringMaxLength(40) }}
+            <router-link
+              :to="{ name: 'viewNote', params: { articalId: item._id } }"
+            >
+              {{ item.title | stringMaxLength(40) }}</router-link
+            >
             <!-- <el-divider></el-divider> -->
           </li>
         </ul>
@@ -25,7 +29,7 @@
     <el-col :span="8" :offset="1">
       <el-card shadow="hover">
         <div slot="header" class="community-card-header-tittle">
-          <span>问答板块</span>
+          <span>提问板块</span>
           <router-link
             class="enter"
             :to="{ name: 'community', params: { communityId: 'problem' } }"
@@ -38,7 +42,11 @@
             v-for="(item, index) in problem"
             :key="index"
           >
-            {{ item.title | stringMaxLength(40) }}
+            <router-link
+              :to="{ name: 'viewProblem', params: { articalId: item._id } }"
+            >
+              {{ item.title | stringMaxLength(40) }}</router-link
+            >
             <!-- <el-divider></el-divider> -->
           </li>
         </ul>
@@ -72,6 +80,7 @@ export default {
     getArticalLatest().then((res) => {
       this.note = res.data.noteList;
       this.problem = res.data.problemList;
+      // console.log(this.note);
     });
   },
   mounted() {
@@ -92,6 +101,12 @@ export default {
   .community-card-content-item {
     padding: 5px;
     border-bottom: 1px solid #f0f0f0;
+    a {
+      color: #000;
+      &:hover {
+        color: #409eff;
+      }
+    }
   }
 }
 </style>

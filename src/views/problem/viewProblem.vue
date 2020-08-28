@@ -9,7 +9,7 @@
     </div>
     <div class="vote-body">
       <span>您的鼓励，是我创作的动力！！</span>
-      <el-button type="danger" class="iconfont icon-good"
+      <el-button @click="likeProblem" type="danger" class="iconfont icon-good"
         >喜欢此文({{ problem.likeNum }})</el-button
       >
       <el-button type="success" class="el-icon-hot-water"
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { getProblemContent } from "@api/problem";
+import { getProblemContent, likeProblem } from "@api/problem";
 import marked from "marked";
 export default {
   name: "viewNote",
@@ -54,6 +54,18 @@ export default {
       });
   },
   methods: {
+    likeProblem() {
+      likeProblem({
+        articalId: this.$route.params.articalId,
+      })
+        .then((res) => {
+          const { likeNum } = res.data;
+          this.problem.likeNum = likeNum;
+        })
+        .catch((err) => {
+          console.log();
+        });
+    },
     goBack() {
       this.$router.go(-1);
     },

@@ -16,11 +16,18 @@
       </el-col>
       <el-col :span="8">
         <div class="search">
-          <el-input
-            placeholder="搜全站..."
-            prefix-icon="el-icon-search"
-            v-model="input"
-          ></el-input>
+          <el-select v-model="searchType" placeholder="请选择">
+            <el-option label="随笔" value="note"></el-option>
+            <el-option label="问答" value="problem"></el-option>
+          </el-select>
+          <el-autocomplete
+            :debounce="500"
+            v-model="searchText"
+            :fetch-suggestions="searchArtical"
+            placeholder="请输入内容"
+            @select="goArtical"
+          >
+          </el-autocomplete>
         </div>
       </el-col>
       <el-col :span="8">
@@ -33,7 +40,6 @@
             </el-dropdown-menu>
             <el-dropdown-menu slot="dropdown" v-if="$store.state.isLogin">
               <el-dropdown-item command="user">个人中心</el-dropdown-item>
-
               <el-dropdown-item command="logout">退出登陆</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
@@ -59,21 +65,27 @@
 </template>
 
 <script>
+import { searchNote } from "@api/note";
+import { searchProblem } from "@api/problem";
+
 export default {
   name: "theHeader",
   data() {
     return {
+      // restaurants: [],
       isLogin: true,
       // avatarImgSrc: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
       // avatarImgSrc:'../../assets/img/user.jpg',
       activeIndex: "/home",
-      input: "",
+      searchText: "",
+      searchType: "note",
       msgNum: 0,
       user: `/user/232/noteList`,
     };
   },
-  created() {
-    console.log;
+  created() {},
+  mounted() {
+    // this.restaurants = this.loadAll();
   },
   methods: {
     userRegist(command) {
@@ -94,7 +106,7 @@ export default {
             // this.$store.commit("SET_TOKEN", "");
             this.$router.push({ name: "login" });
             // console.log('logout');
-          }  
+          }
           break;
         case "user":
           {
@@ -126,6 +138,36 @@ export default {
           }
           break;
       }
+    },
+    searchArtical(value, callback) {
+      if (value) {
+        const searchArtical =
+          this.searchType == "note" ? searchNote : searchProblem;
+        searchArtical({
+          value,
+        })
+          .then((res) => {
+            // let cb = [];
+            let results = res.data.data;
+            let cb = results.map((item) => {
+              return {
+                value: item.title,
+                _id: item._id,
+              };
+            });
+            callback(cb);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    },
+    goArtical(artical) {
+      const routerName = this.searchType == "note" ? "viewNote" : "viewProblem";
+      this.$router.push({
+        name: routerName,
+        params: { articalId: artical._id },
+      });
     },
   },
 };
@@ -161,6 +203,24 @@ export default {
     .search {
       padding-top: 10px;
       margin: 0 auto;
+      .el-select {
+        width: 21%;
+        input {
+          // border: 0;
+          // border-right: 0;
+          border-top-right-radius: 0;
+          border-bottom-right-radius: 0;
+        }
+      }
+      .el-autocomplete {
+        width: 79%;
+        input {
+          // border: 0;
+          border-left: 0;
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
     }
     .user {
       padding-top: 10px;

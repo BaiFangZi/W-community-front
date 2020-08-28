@@ -34,3 +34,10 @@ export const likeProblem = (params) => request({
     method: 'get',
     params
 })
+
+//搜索提问
+export const searchProblem = (params) => request({
+    url: '/api/v1/problem/search',
+    method: 'get',
+    params
+})

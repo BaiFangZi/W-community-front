@@ -64,7 +64,8 @@ export default {
         articalId: this.$route.params.articalId,
       })
         .then((res) => {
-          console.log(res);
+          const { likeNum } = res.data;
+          this.note.likeNum = likeNum;
         })
         .catch((err) => {
           console.log();

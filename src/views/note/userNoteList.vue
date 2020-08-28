@@ -42,13 +42,6 @@
         </el-table-column>
         <el-table-column prop="name"></el-table-column>
         <el-table-column align="right">
-          <template slot="header" slot-scope="scope">
-            <el-input
-              v-model="search"
-              size="medium"
-              placeholder="输入关键字搜索"
-            />
-          </template>
           <template slot-scope="scope">
             <el-button size="mini" @click="handlView(scope.$index, scope.row)"
               >查看</el-button
@@ -79,8 +72,6 @@
   </el-row>
 </template>
 
-
-
 <script>
 export default {
   data() {
@@ -107,7 +98,7 @@ export default {
           address: "上海市普陀区金沙江路 1516 弄",
         },
       ],
-      search: "",
+    
       noteCount: 0,
       imgSrc: "",
       currentPage: 1,
