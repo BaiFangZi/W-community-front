@@ -8,17 +8,28 @@
     class="form-user"
   >
     <h4 style="text-align: center;">更改账户信息</h4>
-    <el-form-item label="用户名" prop="name"
-      ><el-input v-model="ruleForm.name"></el-input
-    ></el-form-item>
-    <el-form-item label="邮箱" prop="email"
-      ><el-input v-model="ruleForm.email"></el-input
-    ></el-form-item>
+    <el-form-item label="用户名" prop="name">
+      <el-input v-model="ruleForm.name"></el-input>
+    </el-form-item>
+    <el-form-item label="邮箱" prop="email">
+      <el-input v-model="ruleForm.email"></el-input>
+    </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="submitForm('ruleForm')">保存</el-button>
       <el-button @click="goBack">取消</el-button>
     </el-form-item>
-    <!-- <el-form-item><el-button " @click="submitForm('ruleForm')">取消</el-button></el-form-item> -->
+    <el-form-item>
+      <el-upload
+        class="avatar-uploader"
+        action="https://jsonplaceholder.typicode.com/posts/"
+        :show-file-list="false"
+        :on-success="handleAvatarSuccess"
+        :before-upload="beforeAvatarUpload"
+      >
+        <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+      </el-upload>
+    </el-form-item>
   </el-form>
 </template>
 <script>
@@ -42,13 +53,24 @@ export default {
     };
 
     return {
+      imageUrl: "",
       ruleForm: {
         name: "",
         email: "",
       },
       rules: {
-        email: [{ validator: checkEmail, trigger: "blur" }],
-        name: [{ validator: checkName, trigger: "blur" }],
+        email: [
+          {
+            validator: checkEmail,
+            trigger: "blur",
+          },
+        ],
+        name: [
+          {
+            validator: checkName,
+            trigger: "blur",
+          },
+        ],
       },
     };
   },
@@ -78,5 +100,33 @@ export default {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;
+}
+
+.avatar-uploader {
+  .el-upload {
+    border: 1px dashed #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  .el-upload:hover {
+    border-color: #409eff;
+  }
+
+  .avatar-uploader-icon {
+    font-size: 28px;
+    color: #8c939d;
+    width: 178px;
+    height: 178px;
+    line-height: 178px;
+    text-align: center;
+  }
+}
+
+.avatar {
+  width: 178px;
+  height: 178px;
+  display: block;
 }
 </style>

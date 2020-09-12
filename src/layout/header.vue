@@ -8,7 +8,9 @@
           mode="horizontal"
           router
         >
-          <el-menu-item index="1"><div class="logo"></div></el-menu-item>
+          <el-menu-item index="1">
+            <div class="logo"></div>
+          </el-menu-item>
           <el-menu-item index="/home">社区</el-menu-item>
           <el-menu-item :index="user">管理</el-menu-item>
           <el-menu-item index="/about">关于</el-menu-item>
@@ -33,7 +35,7 @@
       <el-col :span="8">
         <div class="user">
           <el-dropdown @command="userRegist" trigger="click">
-            <el-avatar src=""></el-avatar>
+            <el-avatar :src="avatarImgSrc"></el-avatar>
             <el-dropdown-menu slot="dropdown" v-if="!$store.state.isLogin">
               <el-dropdown-item command="login">登陆</el-dropdown-item>
               <el-dropdown-item command="regist">注册</el-dropdown-item>
@@ -73,8 +75,8 @@ export default {
   data() {
     return {
       // restaurants: [],
-      isLogin: true,
-      // avatarImgSrc: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png',
+      isLogin: false,
+      avatarImgSrc: "",
       // avatarImgSrc:'../../assets/img/user.jpg',
       activeIndex: "/home",
       searchText: "",
@@ -83,7 +85,15 @@ export default {
       user: `/user/232/noteList`,
     };
   },
-  created() {},
+  created() {
+    this.isLogin = !!localStorage.getItem("token");
+    if (this.isLogin) {
+      this.avatarImgSrc =
+        "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png";
+    } else {
+      this.avatarImgSrc = "";
+    }
+  },
   mounted() {
     // this.restaurants = this.loadAll();
   },
@@ -93,31 +103,41 @@ export default {
         case "login":
           {
             // console.log('login');
-            this.$router.push({ name: "login" });
+            this.$router.push({
+              name: "login",
+            });
           }
           break;
         case "regist":
           {
-            this.$router.push({ name: "regist" });
+            this.$router.push({
+              name: "regist",
+            });
           }
           break;
         case "logout":
           {
             // this.$store.commit("SET_TOKEN", "");
-            this.$router.push({ name: "login" });
+            this.$router.push({
+              name: "login",
+            });
             // console.log('logout');
           }
           break;
         case "user":
           {
-            this.$router.push({ name: "user" });
+            this.$router.push({
+              name: "user",
+            });
           }
           break;
         case "noteList":
           {
             this.$router.push({
               name: "userNoteList",
-              params: { userID: "12" },
+              params: {
+                userID: "12",
+              },
             });
             // console.log('noteList');
           }
@@ -128,12 +148,16 @@ export default {
       switch (command) {
         case "note":
           {
-            this.$router.push({ name: "createNote" });
+            this.$router.push({
+              name: "createNote",
+            });
           }
           break;
         case "problem":
           {
-            this.$router.push({ name: "createProblem" });
+            this.$router.push({
+              name: "createProblem",
+            });
             // this.$router.push({ name: 'regist' });
           }
           break;
@@ -166,7 +190,9 @@ export default {
       const routerName = this.searchType == "note" ? "viewNote" : "viewProblem";
       this.$router.push({
         name: routerName,
-        params: { articalId: artical._id },
+        params: {
+          articalId: artical._id,
+        },
       });
     },
   },
@@ -178,12 +204,14 @@ export default {
   float: right;
   margin-right: 20px;
 }
+
 .createBlog .header-icon,
 .siteMsg .header-icon {
   height: 60px;
   line-height: 60px;
   font-size: 26px;
   font-weight: 800;
+
   &:hover {
     color: #409eff;
   }
@@ -195,16 +223,21 @@ export default {
 
 .el-header {
   padding: 0 !important;
+
   .el-menu.el-menu--horizontal {
     border: none;
   }
+
   .el-row {
     border-bottom: solid 1px #e6e6e6;
+
     .search {
       padding-top: 10px;
       margin: 0 auto;
+
       .el-select {
         width: 21%;
+
         input {
           // border: 0;
           // border-right: 0;
@@ -212,8 +245,10 @@ export default {
           border-bottom-right-radius: 0;
         }
       }
+
       .el-autocomplete {
         width: 79%;
+
         input {
           // border: 0;
           border-left: 0;
@@ -222,22 +257,29 @@ export default {
         }
       }
     }
+
     .user {
       padding-top: 10px;
       margin: 0 auto;
+
       .el-avatar {
         outline: none;
       }
+
       @include head-navigation-icon();
     }
+
     .createBlog {
       .el-dropdown span {
         outline: none;
       }
+
       @include head-navigation-icon();
     }
+
     .siteMsg {
       @include head-navigation-icon();
+
       .msgNum sup {
         top: 10px;
       }

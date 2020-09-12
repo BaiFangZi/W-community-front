@@ -1,5 +1,6 @@
 import Axios from 'axios'
 import store from '@/store'
+import router from '../router/index'
 import {
 	getToken
 } from '@utils/auth'
@@ -12,10 +13,12 @@ const http = Axios.create({
 // 每次请求都为http头增加Authorization字段，其内容为Token
 http.interceptors.request.use(
 	config => {
-		// if (store.state.user.token) {
-		// 	config.headers.common['Authorization'] = getToken();
-		// }
-		// console.log(config)
+		const token = localStorage.getItem('token');
+		// console.log(token)
+		if (token) {
+			config.headers.common['Authorization'] = token;
+			// config.headers['token'] = token
+		}
 		return config;
 	},
 	error => {
@@ -25,13 +28,11 @@ http.interceptors.request.use(
 
 // http response 拦截器
 http.interceptors.response.use(response => {
-	let data = response.data
-
+	// let data = response.data
 	return response
 
 }, error => {
 	console.log(error)
-
 	switch (error.response.status) {
 		// 	// case 400:
 		case 401:
@@ -50,11 +51,13 @@ export default http
 
 
 function statusCode_401() {
-	localStorage.removeItem('Authorization')
+	// localStorage.removeItem('token')
+	store.commit('user/CLEAR_TOKEN')
 	alert('用户信息过期，请重新登陆！')
-	// router.replace({
-	// 	path: '/login' // 到登录页重新获取token
-	// });
+
+	router.replace({
+		path: '/login' // 到登录页重新获取token
+	});
 }
 
 function statusCode_504() {

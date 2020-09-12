@@ -13,15 +13,7 @@
       </el-card>
     </el-col>
     <el-col :span="17" :offset="1">
-      <el-table
-        :data="
-          tableData.filter(
-            (data) =>
-              !search || data.name.toLowerCase().includes(search.toLowerCase())
-          )
-        "
-        style="width: 100%"
-      >
+      <el-table :data="tableData" style="width: 100%">
         <el-table-column prop="date">
           <template slot="header" slot-scope="scope">
             <el-button
@@ -98,7 +90,7 @@ export default {
           address: "上海市普陀区金沙江路 1516 弄",
         },
       ],
-    
+
       noteCount: 0,
       imgSrc: "",
       currentPage: 1,

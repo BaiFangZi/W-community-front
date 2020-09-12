@@ -35,25 +35,54 @@ Object.keys(filters).forEach(key => {
 // })
 
 
-// router.beforeEach((to, from, next) => {
-// 	if (to.path !== '/login' && !store.state.userToken) { //每次跳转没有Token就重新返回login页面登录
-// 		return next('/login')
-// 	} else { //有的话
-// 		if (!store.state.permission.permissionList) { // 没有路由列表就取获取
-// 			store.dispatch('FETCH_PERMISSION')
-// 				.then((res) => {
-// 					next(to.fullPath)
-// 				})
-// 			// next()
-// 		} else {
-// 			if (to.path !== '/login') {
 
+// const whiteList = ['/login']
+// router.beforeEach((to, form, next) => {
+// 	if (store.state.user.token) { //有token
+// 		if (to.path === '/login') { //如果之前是登陆界面，就跳转到下个页面
+// 			next()
+// 		} else { //如果是其他页面 ，根据token去获取相应权限
+// 			const hasRole = store.state.user.role
+// 			if(hasRole){ //拿权限
+
+// 			}
+// 		}
+// 	}
+// 	next()
+// })
+// router.beforeEach((to, from, next) => {
+// 	if (store.state.permission.userToken) { //如果有token
+// 		if (to.path === '/login') { //如果之前是登陆界面，就跳转到下个页面
+// 			console.log('0000')
+// 			next()
+// 		} else { //如果是其他页面 ，根据token去获取相应权限
+// 			const hasRoles = store.state.permission.roles.length
+// 			if (hasRoles) { //有权限，就继续跳转
 // 				next()
 // 			} else {
-
-// 				next()
-// 				// next(from.fullPath)
+// 				try {
+// 					store.commit('permission/SET_ROLES', ['admin']) //这里应该根据token去异步获取roles
+// 					store.commit('permission/GENERATE_ROUTES', store.state.permission.roles) //根据权限获取路由列表
+// 					next({
+// 						...to,
+// 						replace: true
+// 					})
+// 				} catch (err) {
+// 					console.log(err)
+// 					store.commit('permission/CLEAR_TOKEN', '')
+// 					store.commit('permission/SET_ROLES', [])
+// 					next('/login') //跳转到login重新登陆
+// 				}
 // 			}
+// 		}
+// 	} else { //如果没有token
+// 		if (whiteList.indexOf(to.path) !== -1) { //设置login白名单，防止login无token时陷入死循环
+// 			console.log(3333)
+// 			console.log(to.path)
+// 			next()
+// 		} else { //如果不是login，跳到login登陆去获取token
+// 			console.log(6666)
+// 			next('/login')
 // 		}
 // 	}
 // })

@@ -77,6 +77,7 @@ export default {
     };
   },
   created() {
+    // console.log(223);
     getArticalLatest().then((res) => {
       this.note = res.data.noteList;
       this.problem = res.data.problemList;

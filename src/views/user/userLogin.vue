@@ -7,36 +7,37 @@
     label-width="80px"
     class="form-login"
   >
-    <el-form-item label="用户名" prop="username"
-      ><el-input v-model="ruleForm.username"></el-input
-    ></el-form-item>
-    <el-form-item label="密码" prop="password"
-      ><el-input
+    <el-form-item label="用户名" prop="username">
+      <el-input v-model="ruleForm.username"></el-input>
+    </el-form-item>
+    <el-form-item label="密码" prop="password">
+      <el-input
         type="password"
         v-model="ruleForm.password"
         autocomplete="off"
-      ></el-input
-    ></el-form-item>
-    <el-form-item label="验证码" prop="verifyCode"
-      ><el-input v-model.number="ruleForm.verifyCode"></el-input
-    ></el-form-item>
+      ></el-input>
+    </el-form-item>
+    <el-form-item label="验证码" prop="verifyCode">
+      <el-input v-model.number="ruleForm.verifyCode"></el-input>
+    </el-form-item>
     <el-form-item label="">
       <div class="verifyImg">
         <img alt="" src="../../assets/img/timg.jpg" />
         <span>换一张</span>
       </div>
     </el-form-item>
-    <el-form-item
-      ><el-button
+    <el-form-item>
+      <el-button
         style="width: 100%;"
         type="primary"
         :disabled="isLanding"
         @click="submitForm('ruleForm')"
-        >登陆</el-button
-      ></el-form-item
-    >
+        >登陆
+      </el-button>
+    </el-form-item>
   </el-form>
 </template>
+
 <script>
 import { login } from "@api/user.js";
 export default {
@@ -66,9 +67,24 @@ export default {
         verifyCode: "",
       },
       rules: {
-        username: [{ validator: checkName, trigger: "blur" }],
-        password: [{ validator: validatePsd, trigger: "blur" }],
-        verifyCode: [{ validator: verifyCode, trigger: "blur" }],
+        username: [
+          {
+            validator: checkName,
+            trigger: "blur",
+          },
+        ],
+        password: [
+          {
+            validator: validatePsd,
+            trigger: "blur",
+          },
+        ],
+        verifyCode: [
+          {
+            validator: verifyCode,
+            trigger: "blur",
+          },
+        ],
       },
       isLanding: false,
     };
@@ -88,8 +104,14 @@ export default {
               switch (res.data.code) {
                 case 0:
                   {
-                    this.$router.push({ name: "home" });
-                    this.$store.state.isLogin = true;
+                    const token = res.data.data;
+                    localStorage.setItem("token", token);
+                    this.$store.commit("user/SET_TOKEN", token);
+                    
+                    this.$router.push({
+                      name: "home",
+                    });
+                    // this.$store.state.isLogin = true;
                   }
                   break;
                 case 10001:
@@ -118,6 +140,7 @@ export default {
   },
 };
 </script>
+
 <style lang="scss">
 .form-login {
   width: calc(33% + 13px);
@@ -126,16 +149,20 @@ export default {
   padding: 20px;
   border-radius: 8px;
   margin-top: 100px;
+
   .verifyImg {
     width: 300px;
     height: 40px;
+
     img {
       width: 150px;
       height: 100%;
     }
+
     span {
       margin: 10px;
     }
+
     span:hover {
       color: #409eff;
     }
