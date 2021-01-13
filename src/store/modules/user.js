@@ -5,7 +5,9 @@
 const state = {
     token: '',
     role: '',
-    isLogin: false,
+    get isLogin() {
+        return localStorage.getItem('token')
+    },
     // token: getToken()
 }
 const mutations = {

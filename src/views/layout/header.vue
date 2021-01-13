@@ -36,11 +36,11 @@
         <div class="user">
           <el-dropdown @command="userRegist" trigger="click">
             <el-avatar :src="avatarImgSrc"></el-avatar>
-            <el-dropdown-menu slot="dropdown" v-if="!$store.state.isLogin">
+            <el-dropdown-menu slot="dropdown" v-if="!$store.state.user.isLogin">
               <el-dropdown-item command="login">登陆</el-dropdown-item>
               <el-dropdown-item command="regist">注册</el-dropdown-item>
             </el-dropdown-menu>
-            <el-dropdown-menu slot="dropdown" v-if="$store.state.isLogin">
+            <el-dropdown-menu slot="dropdown" v-if="$store.state.user.isLogin">
               <el-dropdown-item command="user">个人中心</el-dropdown-item>
               <el-dropdown-item command="logout">退出登陆</el-dropdown-item>
             </el-dropdown-menu>
@@ -117,6 +117,7 @@ export default {
           break;
         case "logout":
           {
+            this.$store.commit("user/CLEAR_TOKEN");
             // this.$store.commit("SET_TOKEN", "");
             this.$router.push({
               name: "login",

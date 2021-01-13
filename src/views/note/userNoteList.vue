@@ -96,6 +96,14 @@ export default {
       currentPage: 1,
     };
   },
+  beforeRouteEnter(to, from, next) {
+    // ...
+    if (this.$store.state.user.isLogin) {
+      this.$router.push("/login");
+    } else {
+      next();
+    }
+  },
   created() {
     // console.log(this.editor);
   },

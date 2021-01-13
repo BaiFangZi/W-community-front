@@ -18,7 +18,7 @@ import Regist from '@views/user/userRegist.vue'
 import Login from '@views/user/userLogin.vue'
 import User from '@views/user/user.vue'
 //布局框架
-import Layout from '@/layout/layout.vue'
+import Layout from '@views/layout/layout.vue'
 
 
 
